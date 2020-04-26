@@ -8,4 +8,4 @@ built by [.Native][]
 
  [features]: https://leafletjs.com
  [BNPB]: https://bnpb.go.id
-	[.Native]: https//instagram.com/kelikisc
+	[.Native]:
