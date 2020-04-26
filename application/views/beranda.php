@@ -15,7 +15,7 @@
     <!--Card content-->
     <div class="card-body">
       <!--Title-->
-      <h4 class="card-title jdl">Persuratan</h4>
+      <h4 class="card-title jdl">Persuratan coba</h4>
       <!--Text-->
       <p class="card-text">Lihat daftar surat atau buat surat baru</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->

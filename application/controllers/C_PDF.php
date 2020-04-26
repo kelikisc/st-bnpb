@@ -967,6 +967,7 @@ class C_PDF extends CI_Controller {
 		$id_harian = $data_rinci_all['0']->id_harian;
 		$id_penginapan = $data_rinci_all['0']->id_penginapan;
 		$id_transport = $data_rinci_all['0']->id_transport;
+		$id_transport2 = $data_rinci_all['0']->id_transport2;
 		$id_tiket = $data_rinci_all['0']->id_tiket;
 
 		//get data uang harian
@@ -975,13 +976,22 @@ class C_PDF extends CI_Controller {
 		//get data uang penginapan
 		$penginapan_result	= $this->db->get_where('biaya_penginapan',array('id' => $id_penginapan))->result();
 		$sbu_penginapan = $penginapan_result['0']->eselon_4;
+		$transport2 = $this->db->get_where('biaya_transport',array('id' => $id_transport2))->result();
+		$tujuan = $transport2['0']->provinsi;
+		
 		//get data uang tiket
-		$tiket_result	= $this->db->get_where('tiket_pesawat',array('id' => $id_tiket))->result();
-		$sbu_tiket = $tiket_result['0']->biaya_tiket;
-		$rute			= $tiket_result['0']->rute;
-		$rute_arr		= explode('-', $rute);
-		$berangkat		= $rute_arr[0];
-		$tujuan			= $rute_arr[1];
+		//handler tiket
+		if ($id_tiket == 0) {
+			$sbu_tiket = 0;
+		} else {
+			//get data tiket pesawat
+			$tiket_result = $this->db->get_where('tiket_pesawat',array('id' => $id_tiket))->result();
+			$tiket = $tiket_result['0']->biaya_tiket;
+			$sbu_tiket = $tiket_result['0']->biaya_tiket;
+			$rute = $tiket_result['0']->rute;
+			$rute_arr = explode('-', $rute);
+			// $berangkat = $rute_arr[0];
+		}
 
 		//get data uang transport
 		$transport_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport))->result();
@@ -1005,7 +1015,7 @@ class C_PDF extends CI_Controller {
 
 		if (empty($var_tgl_rampung)) {
 			echo "<script>         	
-         	alert('Anda harus mengisi SPD Rampung Dulu!');
+         	alert('Anda harus mengisi SPD Rampung dulu!');
          	window.location.href='".base_url('C_PDF/print_biaya/').$arr_slug[0]."';</script>";
 		}
 		$pdf = new FPDF('p','mm','A4');
@@ -1078,7 +1088,7 @@ class C_PDF extends CI_Controller {
         $pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(10,5,'6.','L',0,'C',0);
 		$pdf->Cell(70,5,'a. Tempat berangkat','LR',0,'L',0);
-		$pdf->Cell(90,5,'a. '.$berangkat,'R',0,'L',0);
+		$pdf->Cell(90,5,'a. Jakarta' ,'R',0,'L',0);
         $pdf->Ln();
         $pdf->Cell(10,7,'',0,0);
 		$pdf->Cell(10,5,'','LB',0,'C',0);
@@ -1263,8 +1273,8 @@ class C_PDF extends CI_Controller {
 		$penginapan_result	= $this->db->get_where('biaya_penginapan',array('id' => $id_penginapan))->result();
 		$penginapan = $penginapan_result['0']->eselon_4;
 		//get data uang tiket
-		$tiket_result	= $this->db->get_where('tiket_pesawat',array('id' => $id_tiket))->result();
-		$tiket = $tiket_result['0']->biaya_tiket;
+		// $tiket_result	= $this->db->get_where('tiket_pesawat',array('id' => $id_tiket))->result();
+		// $tiket = $tiket_result['0']->biaya_tiket;
 		//get data uang transport
 		$transport_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport))->result();
 		$transport = $transport_result['0']->besaran*2;
@@ -1276,7 +1286,14 @@ class C_PDF extends CI_Controller {
 			$transport2_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport2))->result();
 			$transport2 = $transport2_result['0']->besaran*2;
 		}
-
+		//handler tiket
+		if ($id_tiket == 0) {
+			$tiket = 0;
+		} else {
+			//get data tiket pesawat
+			$tiket_result = $this->db->get_where('tiket_pesawat',array('id' => $id_tiket))->result();
+			$tiket = $tiket_result['0']->biaya_tiket;
+		}
 
 		$transport = $transport + $transport2;
 
@@ -1601,8 +1618,8 @@ class C_PDF extends CI_Controller {
 		$penginapan_result	= $this->db->get_where('biaya_penginapan',array('id' => $id_penginapan))->result();
 		$sbu_penginapan = $penginapan_result['0']->eselon_4;
 		//get data uang tiket
-		$tiket_result	= $this->db->get_where('tiket_pesawat',array('id' => $id_tiket))->result();
-		$sbu_tiket = $tiket_result['0']->biaya_tiket;
+		// $tiket_result	= $this->db->get_where('tiket_pesawat',array('id' => $id_tiket))->result();
+		// $sbu_tiket = $tiket_result['0']->biaya_tiket;
 		//get data uang transport
 		$transport_result	= $this->db->get_where('biaya_transport',array('id' => $id_transport))->result();
 		$transport = $transport_result['0']->besaran*2;
@@ -1621,6 +1638,13 @@ class C_PDF extends CI_Controller {
 			//get data uang transport lokal
 			$lokal_result	= $this->db->get_where('transportasi_lokal',array('id' => $id_lokal))->result();
 			$biaya_lokal= $lokal_result['0']->besaran;
+		}
+		if ($id_tiket == 0) {
+			$biaya_tiket = 0;
+		} else {
+			//get data tiket pesawat
+			$tiket_result	= $this->db->get_where('tiket_pesawat',array('id' => $id_tiket))->result();
+			$sbu_tiket= $tiket_result['0']->besaran;
 		}
 
 		$total_transport = $transport + $transport2 + $biaya_lokal;
