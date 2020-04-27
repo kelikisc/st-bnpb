@@ -1,7 +1,7 @@
  <nav class="navbar navbar-expand-lg animated fadeInDown navbar-dark fixed-top scrolling-navbar">
     <div class="container">
     <img src="<?php echo base_url('assets/img/logo.png')?>" width="30" height="30"> 
-    <a style="margin-left: 1%; color: black" class="navbar-brand" href="<?php echo base_url('home/beranda')?>"><strong>Persuratan Pusdatinmas</strong></a>
+    <a style="margin-left: 1%; color: black" class="navbar-brand" href="<?php echo base_url('home/beranda')?>"><strong>Pengelolaan Surat Dinas</strong></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>

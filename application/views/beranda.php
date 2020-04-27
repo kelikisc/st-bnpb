@@ -15,7 +15,7 @@
     <!--Card content-->
     <div class="card-body">
       <!--Title-->
-      <h4 class="card-title jdl">Persuratan coba</h4>
+      <h4 class="card-title jdl">Persuratan</h4>
       <!--Text-->
       <p class="card-text">Lihat daftar surat atau buat surat baru</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
@@ -46,7 +46,7 @@
       <!--Title-->
       <h4 class="card-title">Anggaran</h4>
       <!--Text-->
-      <p class="card-text">Mengelola anggaran SBU Pusdatinmas</p>
+      <p class="card-text">Kelola anggaran perjalanan dinas</p>
       <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
       <div class="dropup">
     <button id="anggaran" data-target="#" class="btn btn-indigo btn-md dropdown-toggle dropena" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -82,7 +82,7 @@
       <!--Title-->
       <h4 class="card-title">Kepegawaian</h4>
       <!--Text-->
-      <p class="card-text">Data pegawai Pusdatinmas BNPB</p>
+      <p class="card-text">Data pegawai untuk perjalan dinas</p>
       <div class="dropdown">
         <button id="pegawai" data-target="#" class="btn btn-indigo btn-md dropdown-toggle dropena" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Kelola
