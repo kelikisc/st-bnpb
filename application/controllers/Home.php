@@ -136,22 +136,22 @@ class Home extends CI_Controller {
 	}
 
 	function edit_admin_page($id) {
-		$data['admin_master'] = $this->db->get_where('admin',  array('id' => $id) )->result();
+		$data['admin'] = $this->db->get_where('admin',  array('id' => $id) )->result();
 		$this->load->view('layouts/nav');
 		$this->load->view('layouts/header');
 		$this->load->view('edit_admin', $data);
-		$this->load->view('layouts/footer');
-		if ($_SESSION['status_login'] != 'sukses') {
+		$this->load->view('layouts/footer2');
+		if ($_SESSION['status_login'] != 'berhasil') {
 			$_SESSION['error'] = 'Masukkan username dan password';
         	redirect(base_url(''));
         }
 	}
 
 	function edit_admin($id) {
-		$username = $this->input->post('username');
+		$nama = $this->input->post('nama');
 		$password = $this->input->post('password');
 		$data = array(
-			'username' => $nama,
+			'nama' => $nama,
 			'password' => $password,
 		); 
 		$this->db->where('id', $id);
