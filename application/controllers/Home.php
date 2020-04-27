@@ -148,10 +148,10 @@ class Home extends CI_Controller {
 	}
 
 	function edit_admin($id) {
-		$nama = $this->input->post('nama');
+		$username = $this->input->post('nama');
 		$password = $this->input->post('password');
 		$data = array(
-			'nama' => $nama,
+			'nama' => $username,
 			'password' => $password,
 		); 
 		$this->db->where('id', $id);
